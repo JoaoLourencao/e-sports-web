@@ -1,17 +1,13 @@
 import { InputHTMLAttributes } from "react";
 
-interface CustomInputProps {
+interface CustomInputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
 }
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  data: CustomInputProps
-}
-
-export function CustomInput({ data, ...props }: Props) {
+export function CustomInput({ label = "", ...props }: CustomInputProps) {
   return (
     <>
-      {data.label && (<label className='font-semibold text-base text-white' htmlFor={props.id}>{data.label}</label>)}
+      {label && (<label className='font-semibold text-base text-white' htmlFor={props.id}>{label}</label>)}
       <input
         className="bg-zinc-900 py-3 px-4 rounded text-sm placeholder:text-zinc-500"
         {...props}
