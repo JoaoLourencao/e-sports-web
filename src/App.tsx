@@ -1,4 +1,5 @@
 import * as Dialog from '@radix-ui/react-dialog';
+import axios from 'axios';
 import { useEffect, useState } from 'react';
 import '../src/styles/main.css';
 import logo from './assets/logo-nlw.svg';
@@ -20,11 +21,9 @@ function App() {
 
   useEffect(() => {
     try {
-      fetch('http://localhost:3333/games')
-        .then(response => response.json())
-        .then(data => {
-          console.log(data)
-          setGames(data)
+      axios('http://localhost:3333/games')
+        .then(response => {
+          setGames(response.data)
         })
     } catch (e) {
       console.log(e, "error")
